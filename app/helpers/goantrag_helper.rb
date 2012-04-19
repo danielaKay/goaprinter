@@ -1,0 +1,2 @@
+module GoantragHelper
+end

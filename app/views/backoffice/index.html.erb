@@ -1,0 +1,57 @@
+<h1>Geschäftsordnungsanträge - Backoffice</h1>
+
+<script>
+// shamelessly stolen from 
+// http://www.webnuggs.com/general-web-dev/php-code/handling-ajax-forms-in-colorbox
+jQuery(function(){
+  jQuery('.cbox-form').colorbox({maxWidth: '75%', onComplete: function(){
+    cbox_submit();
+  }});
+});
+
+//submit ajax form continually if needed
+function cbox_submit()
+{
+  jQuery("#formupdate").submit(function(){
+    jQuery.post(
+      jQuery(this).attr('action'),
+      jQuery(this).serialize(),
+      function(data){
+        //jQuery().colorbox({html: data, onComplete: function(){
+        //  cbox_submit();
+        //}});
+        //$.colorbox.close();
+        location.reload();
+      }
+    );
+    return false;
+  });
+}// cbox_submit
+</script>
+
+<table>
+  <tr>
+    <td>ID</td>
+    <td>Typ</td>
+    <td>Owner</td>
+    <td>Titel</td>
+    <td>Text</td>
+    <td>Begründung</td>
+    <td>Administrativa</td>
+  </tr>
+<% @antrags.each do | current| %>
+<% puts current.inspect %> 
+  <tr>
+    <td><%= current.id %></td>
+    <td><%= current.gotype %></td>
+    <td><%= current.goowner %></td>
+    <td><%= current.gotitle %></td>
+    <td><%= current.gotext %></td>
+    <td><%= current.goelaboration %></td>
+    <td>
+      <a  class="cbox-form" href="update/<%= current.id %>">Edit</a> -- 
+      <a href="print/<%= current.id %>.pdf">Print</a>
+    </td>
+  </tr>
+  <% end %>
+</table>

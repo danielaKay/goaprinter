@@ -1,0 +1,29 @@
+<% case @antrag[:gotype] %>
+  <% when "go1" %>
+<h1>Antrag auf &Auml;nderung der Satzung</h1>
+  <% when "go2" %>
+<h1>Antrag auf &Auml;nderung der Tagesordnung</h1>
+<% end %>
+
+<div class="signature" style="text-align:right;float:right;margin-top: 20px;">
+Neum&uuml;nster, den <%= Time.now.strftime("%d.%m.%Y") %>
+</div>
+
+<div style="clear:both"></div>
+
+
+<h2>Antragstitel</h2>
+No. <%= @antrag[:id] %>: <%= @antrag[:gotitle] %>
+
+<h2>Antragsteller</h2>
+<%= @antrag[:goowner] %>
+
+<h2>Antragstext</h2>
+<%= @antrag[:gotext] %>
+
+<h2>Antragsbegr&uuml;ndung</h2>
+<%= @antrag[:goelaboration] %>
+
+<div class="signature" style="text-align:center;border-top:1px black solid;width: 200px;float:right;margin-top: 200px; margin-right: 100px;">
+Unterschrift
+</div>

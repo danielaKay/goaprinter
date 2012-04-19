@@ -1,0 +1,33 @@
+<% if !params["commit"] %>
+  <h1>Update Antrag</h1>
+  
+  
+  <%= form_for :antrag, :html => {:id => "formupdate"} do |f| %>
+  
+    <%= f.hidden_field :id %>
+    
+    <%= f.label :gotype %>
+    <%= f.select :gotype, 
+      {"GO-Antrag auf Änderung der Satzung" => "go1",
+       "GO-Antrag auf Änderung der Tagesordnung" => "go2"} %><br />
+  
+    <%= f.label :goowner %>
+    <%= f.text_field :goowner %><br />
+
+    <%= f.label :gotitle %>
+    <%= f.text_field :gotitle %><br />
+    
+    <%= f.label :gotext %>
+    <%= f.text_area :gotext, :rows => 2 %><br />
+   
+    <%= f.label :goelaboration %>
+    <%= f.text_area :goelaboration, :rows => 2 %><br />
+  
+    <%= f.submit "Abschicken" %>
+  <% end %>
+<% else %>
+SUCCESS
+<script>
+  //$.colorbox.close();
+</script>
+<% end %>
